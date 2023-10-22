@@ -1,0 +1,1189 @@
+openapi: 3.0.3
+info:
+  title: App Store Server API
+  version: 1.9.0
+servers:
+  - url: https://api.storekit.itunes.apple.com/
+    description: Production
+  - url: https://api.storekit-sandbox.itunes.apple.com/
+    description: Sandbox
+tags:
+  - name: inApps
+paths:
+  /inApps/v1/history/{transactionId}:
+    get:
+      operationId: getTransactionHistory
+      tags:
+        - inApps
+      parameters:
+        - name: transactionId
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/transactionId'
+        - name: revision
+          in: query
+          schema:
+            $ref: '#/components/schemas/revision'
+        - name: startDate
+          in: query
+          schema:
+            $ref: '#/components/schemas/startDate'
+        - name: endDate
+          in: query
+          schema:
+            $ref: '#/components/schemas/endDate'
+        - name: productId
+          in: query
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/productId'
+        - name: productType
+          in: query
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/productType'
+        - name: sort
+          in: query
+          schema:
+            $ref: '#/components/schemas/sort'
+        - name: subscriptionGroupIdentifier
+          in: query
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/subscriptionGroupIdentifier'
+        - name: inAppOwnershipType
+          in: query
+          schema:
+            $ref: '#/components/schemas/inAppOwnershipType'
+        - name: revoked
+          in: query
+          schema:
+            type: boolean
+        - name: excludeRevoked
+          deprecated: true
+          in: query
+          schema:
+            type: boolean
+      responses:
+        200:
+          description: _
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/historyResponse'
+        400:
+          description: _
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+        401:
+          description: _
+        404:
+          description: _
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+        429:
+          description: _
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+        500:
+          description: _
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+  /inApps/v1/transactions/{transactionId}:
+    get:
+      operationId: getTransactionInfo
+      tags:
+        - inApps
+      parameters:
+        - name: transactionId
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/transactionId'
+      responses:
+        200:
+          description: _
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/transactionInfoResponse'
+        400:
+          description: _
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+        401:
+          description: _
+        404:
+          description: _
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+        429:
+          description: _
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+        500:
+          description: _
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+  /inApps/v1/subscriptions/{transactionId}:
+    get:
+      operationId: getAllSubscriptionStatuses
+      tags:
+        - inApps
+      parameters:
+        - name: transactionId
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/transactionId'
+        - name: status
+          in: query
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/status'
+      responses:
+        200:
+          description: _
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/statusResponse'
+        400:
+          description: _
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+        401:
+          description: _
+        404:
+          description: _
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+        429:
+          description: _
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+        500:
+          description: _
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+  /inApps/v1/transactions/consumption/{transactionId}:
+    summary: Send consumption information.
+    put:
+      operationId: sendConsumptionInformation
+      tags:
+        - inApps
+      parameters:
+        - name: transactionId
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/transactionId'
+      requestBody:
+        content:
+          'application/json':
+            schema:
+              $ref: '#/components/schemas/consumptionRequest'
+      responses:
+        202:
+          description: _
+        400:
+          description: _
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+        401:
+          description: _
+        404:
+          description: _
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+        429:
+          description: _
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+        500:
+          description: _
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+  /inApps/v1/lookup/{orderId}:
+    get:
+      operationId: lookUpOrderId
+      tags:
+        - inApps
+      parameters:
+        - name: orderId
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/orderId'
+      responses:
+        200:
+          description: _
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/orderLookupResponse'
+        400:
+          description: _
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+        401:
+          description: _
+        429:
+          description: _
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+        500:
+          description: _
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+  /inApps/v2/refund/lookup/{transactionId}:
+    get:
+      operationId: getRefundHistoryV2
+      tags:
+        - inApps
+      parameters:
+        - name: transactionId
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/transactionId'
+        - name: revision
+          in: query
+          schema:
+            $ref: '#/components/schemas/revision'
+      responses:
+        200:
+          description: _
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/refundHistoryResponse'
+        400:
+          description: _
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+        401:
+          description: _
+        404:
+          description: _
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+        429:
+          description: _
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+        500:
+          description: _
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+  /inApps/v1/refund/lookup/{originalTransactionId}:
+    get:
+      operationId: getRefundHistoryV1
+      tags:
+        - inApps
+      deprecated: true
+      parameters:
+        - name: originalTransactionId
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/originalTransactionId'
+      responses:
+        200:
+          description: _
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/refundLookupResponse'
+        400:
+          description: _
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+        401:
+          description: _
+        404:
+          description: _
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+        429:
+          description: _
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+        500:
+          description: _
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+  /inApps/v1/subscriptions/extend/{originalTransactionId}:
+    put:
+      operationId: extendSubscriptionRenewalDate
+      tags:
+        - inApps
+      parameters:
+        - name: originalTransactionId
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/originalTransactionId'
+      requestBody:
+        content:
+          'application/json':
+            schema:
+              $ref: '#/components/schemas/extendRenewalDateRequest'
+      responses:
+        200:
+          description: _
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/extendRenewalDateResponse'
+        400:
+          description: _
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+        401:
+          description: _
+        403:
+          description: _
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+        404:
+          description: _
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+        429:
+          description: _
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+        500:
+          description: _
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/errorResponse'        
+  /inApps/v1/subscriptions/extend/mass/:
+    post:
+      operationId: extendSubscriptionRenewalDatesForAllActiveSubscribers
+      tags:
+        - inApps
+      requestBody:
+        content:
+          'application/json':
+            schema:
+              $ref: '#/components/schemas/massExtendRenewalDateRequest'
+      responses:
+        200:
+          description: _
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/massExtendRenewalDateResponse'
+        400:
+          description: _
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+        401:
+          description: _
+        403:
+          description: _
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+        404:
+          description: _
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+        429:
+          description: _
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+        500:
+          description: _
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/errorResponse'        
+  /inApps/v1/subscriptions/extend/mass/{productId}/{requestIdentifier}:
+    get:
+      operationId: getStatusOfSubscriptionRenewalDateExtensions
+      tags:
+        - inApps
+      parameters:
+        - name: productId
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/productId'
+        - name: requestIdentifier
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/requestIdentifier'
+      responses:
+        200:
+          description: _
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/massExtendRenewalDateStatusResponse'
+        400:
+          description: _
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+        401:
+          description: _
+        429:
+          description: _
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+        500:
+          description: _
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/errorResponse'        
+  /inApps/v1/notifications/history:
+    post:
+      operationId: getNotificationHistory
+      tags:
+        - inApps
+      parameters:
+        - name: paginationToken
+          in: query
+          schema:
+            $ref: '#/components/schemas/paginationToken'
+      requestBody:
+        content:
+          'application/json':
+            schema:
+              $ref: '#/components/schemas/notificationHistoryRequest'
+      responses:
+        200:
+          description: _
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/notificationHistoryResponse'
+        400:
+          description: _
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+        401:
+          description: _
+        404:
+          description: _
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+        429:
+          description: _
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+        500:
+          description: _
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/errorResponse'        
+  /inApps/v1/notifications/test:
+    post:
+      operationId: requestTestNotification
+      tags:
+        - inApps
+      responses:
+        200:
+          description: _
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/sendTestNotificationResponse'
+        401:
+          description: _
+        404:
+          description: _
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+        429:
+          description: _
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+        500:
+          description: _
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/errorResponse'        
+  /inApps/v1/notifications/test/{testNotificationToken}:
+    get:
+      operationId: getTestNotificationStatus
+      tags:
+        - inApps
+      parameters:
+        - name: testNotificationToken
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/testNotificationToken'
+      responses:
+        200:
+          description: _
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/checkTestNotificationResponse'
+        400:
+          description: _
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+        401:
+          description: _
+        404:
+          description: _
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+        429:
+          description: _
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+        500:
+          description: _
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/errorResponse'              
+components:
+  schemas:
+    accountTenure:
+      type: integer
+      format: int32
+      enum:
+        - 0
+        - 1
+        - 2
+        - 3
+        - 4
+        - 5
+        - 6
+        - 7
+      x-enum-varnames:
+        - UNDECLARED
+        - ZERO_TO_THREE_DAYS
+        - THREE_DAYS_TO_TEN_DAYS
+        - TEN_DAYS_TO_THIRTY_DAYS
+        - THIRTY_DAYS_TO_NINETY_DAYS
+        - NINETY_DAYS_TO_ONE_HUNDRED_EIGHTY_DAYS
+        - ONE_HUNDRED_EIGHTY_DAYS_TO_THREE_HUNDRED_SIXTY_FIVE_DAYS
+        - GREATER_THAN_THREE_HUNDRED_SIXTY_FIVE_DAYS
+    appAccountToken:
+      type: string
+      format: uuid
+    appAppleId:
+      type: integer
+      format: int64
+    attemptDate:
+      type: string
+      format: timestamp
+    bundleId:
+      type: string
+    checkTestNotificationResponse:
+      type: object
+      properties:
+        sendAttempts:
+          type: array
+          items:
+            $ref: '#/components/schemas/sendAttemptItem'
+        signedPayload:
+          $ref: '#/components/schemas/signedPayload'
+        firstSendAttemptResult:
+          type: string
+          deprecated: true
+    complete:
+      type: boolean
+    completeDate:
+      type: string
+      format: timestamp
+    consumptionRequest:
+      type: object
+      properties:
+        accountTenure:
+          $ref: '#/components/schemas/accountTenure'
+        appAccountToken:
+          $ref: '#/components/schemas/appAccountToken'
+        consumptionStatus:
+          $ref: '#/components/schemas/consumptionStatus'
+        customerConsented:
+          $ref: '#/components/schemas/customerConsented'
+        deliveryStatus:
+          $ref: '#/components/schemas/deliveryStatus'
+        lifetimeDollarsPurchased:
+          $ref: '#/components/schemas/lifetimeDollarsPurchased'
+        lifetimeDollarsRefunded:
+          $ref: '#/components/schemas/lifetimeDollarsRefunded'
+        platform:
+          $ref: '#/components/schemas/platform'
+        playTime:
+          $ref: '#/components/schemas/playTime'
+        sampleContentProvided:
+          $ref: '#/components/schemas/sampleContentProvided'
+        userStatus:
+          $ref: '#/components/schemas/userStatus'
+      required:
+        - accountTenure
+        - appAccountToken
+        - consumptionStatus
+        - customerConsented
+        - deliveryStatus
+        - lifetimeDollarsPurchased
+        - lifetimeDollarsRefunded
+        - platform
+        - playTime
+        - sampleContentProvided
+        - userStatus
+    consumptionStatus:
+      type: integer
+      format: int32
+      enum: [ 0, 1, 2, 3 ]
+      x-enum-vernames:
+       - UNDECLARED
+       - NOT_CONSUMED
+       - PARTIALLY_CONSUMED
+       - FULLY_CONSUMED
+    customerConsented:
+      type: boolean
+    deliveryStatus:
+      type: integer
+      format: int32
+      enum: [ 0, 1, 2, 3, 4, 5 ]
+      x-enum-varnames:
+       - DELIVERED_AND_WORKING_PROPERLY
+       - DID_NOT_DELIVER_DUE_TO_QUALITY_ISSUE
+       - DELIVERED_WRONG_ITEM
+       - DID_NOT_DELIVER_DUE_TO_SERVER_OUTAGE
+       - DID_NOT_DELIVER_DUE_TO_IN_GAME_CURRENCY_CHANGE
+       - DID_NOT_DELIVER_FOR_OTHER_REASON
+    effectiveDate:
+      type: string
+      format: timestamp
+    endDate:
+      type: string
+      format: unix timestamp to millisecond
+    environment:
+      type: string
+    errorResponse:
+      type: object
+      properties:
+        errorCode:
+          type: integer
+          format: int64
+        errorMessage:
+          type: string
+    extendByDays:
+      type: integer
+      format: int32
+      minimum: 1
+      maximum: 90
+    extendReasonCode:
+      type: integer
+      format: int32
+      enum: [ 0, 1, 2, 3 ]
+      x-enum-varnames:
+        - UNDECLARED
+        - CUSTOMER_SATISFACTION
+        - OTHER
+        - SERVICE_ISSUE_OR_OUTAGE
+    extendRenewalDateRequest:
+      type: object
+      properties:
+        extendByDays:
+          $ref: '#/components/schemas/extendByDays'
+        extendReasonCode:
+          $ref: '#/components/schemas/extendReasonCode'
+        requestIdentifier:
+          $ref: '#/components/schemas/requestIdentifier'
+      required:
+        - extendByDays
+        - extendReasonCode
+        - requestIdentifier
+    extendRenewalDateResponse:
+      type: object
+      properties:
+        effectiveDate:
+          $ref: '#/components/schemas/effectiveDate'
+        originalTransactionId:
+          $ref: '#/components/schemas/originalTransactionId'
+        success:
+          $ref: '#/components/schemas/success'
+        webOrderLineItemId:
+          $ref: '#/components/schemas/webOrderLineItemId'
+    failedCount:
+      type: integer
+      format: int64
+    hasMore:
+      type: boolean
+    historyResponse:
+      type: object
+      properties:
+        appAppId:
+          type: integer
+          format: int64
+        bundleId:
+          type: string
+        environment:
+          type: string
+          enum:
+            - Production
+            - Sandbox
+        hasMore:
+          type: boolean
+        revision:
+          type: string
+        signedTransactions:
+          type: array
+          items:
+            type: string
+    inAppOwnershipType:
+      type: string
+      enum:
+        - FAMILY_SHARED
+        - PURCHASED
+    jwsRenewalInfo:
+      type: string
+    jwsTransaction:
+      type: string
+    lastTransactionsItem:
+      type: object
+      properties:
+        originalTransactionId:
+          type: string
+        status:
+          $ref: '#/components/schemas/status'
+        signedRenewalInfo:
+          $ref: '#/components/schemas/jwsRenewalInfo'
+        signedTransactionInfo:
+          $ref: '#/components/schemas/jwsTransaction'
+    lifetimeDollarsPurchased:
+      type: integer
+      format: int32
+      enum: [ 0, 1, 2, 3, 4, 5, 6, 7 ]
+      x-enum-varnames:
+        - UNDECLARED
+        - ZERO_DOLLARS
+        - ONE_CENT_TO_FORTY_NINE_DOLLARS_AND_NINETY_NINE_CENTS
+        - FIFTY_DOLLARS_TO_NINETY_NINE_DOLLARS_AND_NINETY_NINE_CENTS
+        - ONE_HUNDRED_DOLLARS_TO_FOUR_HUNDRED_NINETY_NINE_DOLLARS_AND_NINETY_NINE_CENTS
+        - FIVE_HUNDRED_DOLLARS_TO_NINE_HUNDRED_NINETY_NINE_DOLLARS_AND_NINETY_NINE_CENTS
+        - ONE_THOUSAND_DOLLARS_TO_ONE_THOUSAND_NINE_HUNDRED_NINETY_NINE_DOLLARS_AND_NINETY_NINE_CENTS
+        - TWO_THOUSAND_DOLLARS_OR_GREATER
+    lifetimeDollarsRefunded:
+      type: integer
+      format: int32
+      enum: [ 0, 1, 2, 3, 4, 6, 7 ]
+      x-enum-varnames:
+        - UNDECLARED
+        - ZERO_DOLLARS
+        - ONE_CENT_TO_FORTY_NINE_DOLLARS_AND_NINETY_NINE_CENTS
+        - FIFTY_DOLLARS_TO_NINETY_NINE_DOLLARS_AND_NINETY_NINE_CENTS
+        - ONE_HUNDRED_DOLLARS_TO_FOUR_HUNDRED_NINETY_NINE_DOLLARS_AND_NINETY_NINE_CENTS
+        - FIVE_HUNDRED_DOLLARS_TO_NINE_HUNDRED_NINETY_NINE_DOLLARS_AND_NINETY_NINE_CENTS
+        - ONE_THOUSAND_DOLLARS_TO_ONE_THOUSAND_NINE_HUNDRED_NINETY_NINE_DOLLARS_AND_NINETY_NINE_CENTS
+        - TWO_THOUSAND_DOLLARS_OR_GREATER
+    massExtendRenewalDateRequest:
+      type: object
+      properties:
+        requestIdentifier:
+          $ref: '#/components/schemas/requestIdentifier'
+        extendByDays:
+          $ref: '#/components/schemas/extendByDays'
+        extendReasonCode:
+          $ref: '#/components/schemas/extendReasonCode'
+        productId:
+          $ref: '#/components/schemas/productId'
+        storefrontCountryCodes:
+          $ref: '#/components/schemas/storefrontCountryCodes'
+      required:
+        - requestIdentifier
+        - extendByDays
+        - extendReasonCode
+        - productId
+    massExtendRenewalDateResponse:
+      type: object
+      properties:
+        requestIdentifier:
+          $ref: '#/components/schemas/requestIdentifier'
+    massExtendRenewalDateStatusResponse:
+      type: object
+      properties:
+        requestIdentifier:
+          $ref: '#/components/schemas/requestIdentifier'
+        complete:
+          $ref: '#/components/schemas/complete'
+        completeDate:
+          $ref: '#/components/schemas/completeDate'
+        failedCount:
+          $ref: '#/components/schemas/failedCount'
+        succeededCount:
+          $ref: '#/components/schemas/succeededCount'
+    notificationHistoryRequest:
+      type: object
+      properties:
+        startDate:
+          $ref: '#/components/schemas/startDate'
+        endDate:
+          $ref: '#/components/schemas/endDate'
+        notificationType:
+          $ref: '#/components/schemas/notificationTypeV2'
+        notificationSubtype:
+          $ref: '#/components/schemas/notificationSubtypeV2'
+        onlyFailures:
+          $ref: '#/components/schemas/onlyFailures'
+        transactionId:
+          $ref: '#/components/schemas/transactionId'
+        originalTransactionId:
+          type: string
+          deprecated: true
+      required:
+        - startDate
+        - endDate
+    notificationHistoryResponse:
+      type: object
+      properties:
+        notificationHistory:
+          type: array
+          items:
+            $ref: '#/components/schemas/notificationHistoryResponseItem'
+        hasMore:
+          $ref: '#/components/schemas/hasMore'
+        paginationToken:
+          $ref: '#/components/schemas/paginationToken'
+    notificationHistoryResponseItem:
+      type: object
+      properties:
+        sendAttempts:
+          type: array
+          items:
+            $ref: '#/components/schemas/sendAttemptItem'
+        signedPayload:
+          $ref: '#/components/schemas/signedPayload'
+        firstSendAttemptResult:
+          type: string
+          deprecated: true
+    notificationSubtypeV2:
+      type: string
+      enum:
+        - ACCEPTED
+        - AUTO_RENEW_DISABLED
+        - AUTO_RENEW_ENABLED
+        - BILLING_RECOVERY
+        - BILLING_RETRY
+        - DOWNGRADE
+        - FAILURE
+        - GRACE_PERIOD
+        - INITIAL_BUY
+        - PENDING
+        - PRICE_INCREASE
+        - PRODUCT_NOT_FOR_SALE
+        - RESUBSCRIBE
+        - SUMMARY
+        - UPGRADE
+        - VOLUNTARY
+    notificationTypeV2:
+      type: string
+      enum:
+        - CONSUMPTION_REQUEST
+        - DID_CHANGE_RENEWAL_PREF
+        - DID_CHANGE_RENEWAL_STATUS
+        - DID_FAIL_TO_RENEW
+        - DID_RENEW
+        - EXPIRED
+        - GRACE_PERIOD_EXPIRED
+        - OFFER_REDEEMED
+        - PRICE_INCREASE
+        - REFUND
+        - REFUND_DECLINED
+        - REFUND_REVERSED
+        - RENEWAL_EXTENDED
+        - RENEWAL_EXTENSION
+        - REVOKE
+        - SUBSCRIBED
+        - TEST
+    onlyFailures:
+      type: boolean
+    orderId:
+      type: string
+    orderLookupResponse:
+      type: object
+      properties:
+        status:
+          $ref: '#/components/schemas/orderLookupStatus'
+        signedTransactions:
+          type: array
+          items:
+            $ref: '#/components/schemas/jwsTransaction'
+    orderLookupStatus:
+      type: integer
+      format: int32
+      enum: [ 0, 1 ]
+      x-enum-varnames:
+        - VALID
+        - INVALID
+    originalTransactionId:
+      type: string
+    paginationToken:
+      type: string
+    platform:
+      type: integer
+      format: int32
+      enum: [ 0, 1, 2 ]
+      x-enum-varnames:
+        - UNDECLARED
+        - APPLE
+        - NON_APPLE
+    playTime:
+      type: integer
+      format: int32
+      enum: [ 0, 1, 2, 3, 4, 5, 6, 7 ]
+      x-enum-varnames:
+        - UNDECLARED
+        - ZERO_TO_FIVE_MINUTES
+        - FIVE_TO_SIXTY_MINUTES
+        - ONE_TO_SIX_HOURS
+        - SIX_HOURS_TO_TWENTY_FOUR_HOURS
+        - ONE_DAY_TO_FOUR_DAYS
+        - FOUR_DAYS_TO_SIXTEEN_DAYS
+        - OVER_SIXTEEN_DAYS
+    productId:
+      type: string
+    productType:
+      type: string
+      enum:
+        - AUTO_RENEWABLE
+        - NON_RENEWABLE
+        - CONSUMABLE
+        - NON_CONSUMABLE
+    refundHistoryResponse:
+      type: object
+      properties:
+        hasMore:
+          $ref: '#/components/schemas/hasMore'
+        revision:
+          $ref: '#/components/schemas/revision'
+        signedTransactions:
+          type: array
+          items:
+            $ref: '#/components/schemas/jwsTransaction'
+    refundLookupResponse:
+      deprecated: true
+      type: object
+      properties:
+        signedTransactions:
+          type: array
+          items:
+            $ref: '#/components/schemas/jwsTransaction'
+    requestIdentifier:
+      type: string
+      maxLength: 128
+    revision:
+      type: string
+    sampleContentProvided:
+      type: boolean
+    sendAttemptItem:
+      type: object
+      properties:
+        attemptDate:
+          $ref: '#/components/schemas/attemptDate'
+        sendAttemptResult:
+          $ref: '#/components/schemas/sendAttemptResult'
+    sendAttemptResult:
+      type: string
+      enum:
+        - SUCCESS
+        - CIRCULAR_REDIRECT
+        - INVALID_RESPONSE
+        - NO_RESPONSE
+        - OTHER
+        - PREMATURE_CLOSE
+        - SOCKET_ISSUE
+        - TIMED_OUT
+        - TLS_ISSUE
+        - UNSUCCESSFUL_HTTP_RESPONSE_CODE
+        - UNSUPPORTED_CHARSET
+    sendTestNotificationResponse:
+      type: object
+      properties:
+        testNotificationToken:
+          $ref: '#/components/schemas/testNotificationToken'
+    signedPayload:
+      type: string
+    sort:
+      type: string
+      enum:
+        - ASCENDING
+        - DESCENDING
+    startDate:
+      type: string
+      format: unix timestamp to millisecond
+    status:
+      type: integer
+      format: int32
+      enum: [ 1, 2, 3, 4, 5 ]
+      x-enum-varnames:
+        - ACTIVE
+        - EXPIRED
+        - BILLING_RETRY
+        - BILLING_GRACE_PERIOD
+        - REVOKED
+    statusResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/subscriptionGroupIdentifierItem'
+        environment:
+          $ref: '#/components/schemas/environment'
+        appAppleId:
+          $ref: '#/components/schemas/appAppleId'
+        bundleId:
+          $ref: '#/components/schemas/bundleId'
+    storefrontCountryCode:
+      type: string
+    storefrontCountryCodes:
+      type: array
+      items:
+        $ref: '#/components/schemas/storefrontCountryCode'
+    subscriptionGroupIdentifier:
+      type: string
+    subscriptionGroupIdentifierItem:
+      type: object
+      properties:
+        subscriptionGroupIdentifier:
+          $ref: '#/components/schemas/subscriptionGroupIdentifier'
+        lastTransactions:
+          type: array
+          items:
+            $ref: '#/components/schemas/lastTransactionsItem'
+    succeededCount:
+      type: integer
+      format: int64
+    success:
+      type: boolean
+    testNotificationToken:
+      type: string
+    transactionId:
+      type: string
+    transactionInfoResponse:
+      type: object
+      properties:
+        signedTransactionInfo:
+          type: string
+    userStatus:
+      type: integer
+      format: int32
+      enum: [ 0, 1, 2, 3, 4 ]
+      x-enum-varnames:
+        - UNDECLARED
+        - ACTIVE
+        - SUSPENDED
+        - TERMINATED
+        - LIMITED_ACCESS
+    webOrderLineItemId:
+      type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+security:
+  - bearerAuth: []
