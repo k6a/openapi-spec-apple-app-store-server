@@ -735,7 +735,7 @@ components:
       type: integer
       format: int32
       enum: [ 0, 1, 2, 3 ]
-      x-enum-vernames:
+      x-enum-varnames:
        - UNDECLARED
        - NOT_CONSUMED
        - PARTIALLY_CONSUMED
