@@ -20,51 +20,48 @@ paths:
           in: path
           required: true
           schema:
-            $ref: '#/components/schemas/TransactionId'
+            type: string
         - name: revision
           in: query
           schema:
-            $ref: '#/components/schemas/Revision'
+            type: string
         - name: startDate
           in: query
           schema:
-            $ref: '#/components/schemas/StartDate'
+            type: integer
+            format: int64
         - name: endDate
           in: query
           schema:
-            $ref: '#/components/schemas/EndDate'
+            type: integer
+            format: int64
         - name: productId
           in: query
           schema:
             type: array
             items:
-              $ref: '#/components/schemas/ProductId'
+              type: string
         - name: productType
           in: query
           schema:
             type: array
             items:
-              $ref: '#/components/schemas/ProductType'
+              $ref: '#/components/schemas/TypeProduct'
         - name: sort
           in: query
           schema:
-            $ref: '#/components/schemas/Sort'
+            type: string
         - name: subscriptionGroupIdentifier
           in: query
           schema:
             type: array
             items:
-              $ref: '#/components/schemas/SubscriptionGroupIdentifier'
+              type: string
         - name: inAppOwnershipType
           in: query
           schema:
             $ref: '#/components/schemas/InAppOwnershipType'
         - name: revoked
-          in: query
-          schema:
-            type: boolean
-        - name: excludeRevoked
-          deprecated: true
           in: query
           schema:
             type: boolean
@@ -80,7 +77,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: '#/components/schemas/ErrorPayload'
         '401':
           description: _
         '404':
@@ -88,19 +85,19 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: '#/components/schemas/ErrorPayload'
         '429':
           description: _
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: '#/components/schemas/ErrorPayload'
         '500':
           description: _
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: '#/components/schemas/ErrorPayload'
   /InApps/v1/transactions/{transactionId}:
     get:
       operationId: GetTransactionInfo
@@ -111,7 +108,7 @@ paths:
           in: path
           required: true
           schema:
-            $ref: '#/components/schemas/TransactionId'
+            type: string
       responses:
         '200':
           description: _
@@ -124,7 +121,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: '#/components/schemas/ErrorPayload'
         '401':
           description: _
         '404':
@@ -132,19 +129,19 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: '#/components/schemas/ErrorPayload'
         '429':
           description: _
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: '#/components/schemas/ErrorPayload'
         '500':
           description: _
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: '#/components/schemas/ErrorPayload'
   /InApps/v1/subscriptions/{transactionId}:
     get:
       operationId: GetAllSubscriptionStatuses
@@ -155,7 +152,7 @@ paths:
           in: path
           required: true
           schema:
-            $ref: '#/components/schemas/TransactionId'
+            type: string
         - name: status
           in: query
           schema:
@@ -174,7 +171,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: '#/components/schemas/ErrorPayload'
         '401':
           description: _
         '404':
@@ -182,19 +179,19 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: '#/components/schemas/ErrorPayload'
         '429':
           description: _
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: '#/components/schemas/ErrorPayload'
         '500':
           description: _
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: '#/components/schemas/ErrorPayload'
   /InApps/v1/transactions/consumption/{transactionId}:
     summary: Send consumption information.
     put:
@@ -206,7 +203,7 @@ paths:
           in: path
           required: true
           schema:
-            $ref: '#/components/schemas/TransactionId'
+            type: string
       requestBody:
         content:
           application/json:
@@ -220,7 +217,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: '#/components/schemas/ErrorPayload'
         '401':
           description: _
         '404':
@@ -228,19 +225,19 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: '#/components/schemas/ErrorPayload'
         '429':
           description: _
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: '#/components/schemas/ErrorPayload'
         '500':
           description: _
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: '#/components/schemas/ErrorPayload'
   /InApps/v1/lookup/{orderId}:
     get:
       operationId: LookUpOrderId
@@ -251,7 +248,7 @@ paths:
           in: path
           required: true
           schema:
-            $ref: '#/components/schemas/OrderId'
+            type: string
       responses:
         '200':
           description: _
@@ -264,7 +261,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: '#/components/schemas/ErrorPayload'
         '401':
           description: _
         '429':
@@ -272,13 +269,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: '#/components/schemas/ErrorPayload'
         '500':
           description: _
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: '#/components/schemas/ErrorPayload'
   /InApps/v2/refund/lookup/{transactionId}:
     get:
       operationId: GetRefundHistoryV2
@@ -289,11 +286,11 @@ paths:
           in: path
           required: true
           schema:
-            $ref: '#/components/schemas/TransactionId'
+            type: string
         - name: revision
           in: query
           schema:
-            $ref: '#/components/schemas/Revision'
+            type: string
       responses:
         '200':
           description: _
@@ -306,7 +303,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: '#/components/schemas/ErrorPayload'
         '401':
           description: _
         '404':
@@ -314,64 +311,19 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: '#/components/schemas/ErrorPayload'
         '429':
           description: _
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: '#/components/schemas/ErrorPayload'
         '500':
           description: _
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
-  /InApps/v1/refund/lookup/{originalTransactionId}:
-    get:
-      operationId: GetRefundHistoryV1
-      tags:
-        - InApps
-      deprecated: true
-      parameters:
-        - name: originalTransactionId
-          in: path
-          required: true
-          schema:
-            $ref: '#/components/schemas/OriginalTransactionId'
-      responses:
-        '200':
-          description: _
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/RefundLookupResponse'
-        '400':
-          description: _
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
-        '401':
-          description: _
-        '404':
-          description: _
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
-        '429':
-          description: _
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
-        '500':
-          description: _
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: '#/components/schemas/ErrorPayload'
   /InApps/v1/subscriptions/extend/{originalTransactionId}:
     put:
       operationId: ExtendSubscriptionRenewalDate
@@ -382,7 +334,7 @@ paths:
           in: path
           required: true
           schema:
-            $ref: '#/components/schemas/OriginalTransactionId'
+            type: string
       requestBody:
         content:
           application/json:
@@ -400,7 +352,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: '#/components/schemas/ErrorPayload'
         '401':
           description: _
         '403':
@@ -408,25 +360,25 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: '#/components/schemas/ErrorPayload'
         '404':
           description: _
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: '#/components/schemas/ErrorPayload'
         '429':
           description: _
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: '#/components/schemas/ErrorPayload'
         '500':
           description: _
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: '#/components/schemas/ErrorPayload'
   /InApps/v1/subscriptions/extend/mass/:
     post:
       operationId: ExtendSubscriptionRenewalDatesForAllActiveSubscribers
@@ -449,7 +401,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: '#/components/schemas/ErrorPayload'
         '401':
           description: _
         '403':
@@ -457,25 +409,25 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: '#/components/schemas/ErrorPayload'
         '404':
           description: _
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: '#/components/schemas/ErrorPayload'
         '429':
           description: _
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: '#/components/schemas/ErrorPayload'
         '500':
           description: _
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: '#/components/schemas/ErrorPayload'
   /InApps/v1/subscriptions/extend/mass/{productId}/{requestIdentifier}:
     get:
       operationId: GetStatusOfSubscriptionRenewalDateExtensions
@@ -486,12 +438,13 @@ paths:
           in: path
           required: true
           schema:
-            $ref: '#/components/schemas/ProductId'
+            type: string
         - name: requestIdentifier
           in: path
           required: true
           schema:
-            $ref: '#/components/schemas/RequestIdentifier'
+            type: string
+            maxLength: 128
       responses:
         '200':
           description: _
@@ -504,7 +457,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: '#/components/schemas/ErrorPayload'
         '401':
           description: _
         '429':
@@ -512,13 +465,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: '#/components/schemas/ErrorPayload'
         '500':
           description: _
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: '#/components/schemas/ErrorPayload'
   /InApps/v1/notifications/history:
     post:
       operationId: GetNotificationHistory
@@ -528,7 +481,7 @@ paths:
         - name: paginationToken
           in: query
           schema:
-            $ref: '#/components/schemas/PaginationToken'
+            type: string
       requestBody:
         content:
           application/json:
@@ -546,7 +499,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: '#/components/schemas/ErrorPayload'
         '401':
           description: _
         '404':
@@ -554,19 +507,19 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: '#/components/schemas/ErrorPayload'
         '429':
           description: _
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: '#/components/schemas/ErrorPayload'
         '500':
           description: _
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: '#/components/schemas/ErrorPayload'
   /InApps/v1/notifications/test:
     post:
       operationId: RequestTestNotification
@@ -586,19 +539,19 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: '#/components/schemas/ErrorPayload'
         '429':
           description: _
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: '#/components/schemas/ErrorPayload'
         '500':
           description: _
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: '#/components/schemas/ErrorPayload'
   /InApps/v1/notifications/test/{testNotificationToken}:
     get:
       operationId: GetTestNotificationStatus
@@ -609,7 +562,7 @@ paths:
           in: path
           required: true
           schema:
-            $ref: '#/components/schemas/TestNotificationToken'
+            type: string
       responses:
         '200':
           description: _
@@ -622,7 +575,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: '#/components/schemas/ErrorPayload'
         '401':
           description: _
         '404':
@@ -630,19 +583,19 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: '#/components/schemas/ErrorPayload'
         '429':
           description: _
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: '#/components/schemas/ErrorPayload'
         '500':
           description: _
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: '#/components/schemas/ErrorPayload'
 components:
   schemas:
     AccountTenure:
@@ -666,17 +619,46 @@ components:
         - NINETY_DAYS_TO_ONE_HUNDRED_EIGHTY_DAYS
         - ONE_HUNDRED_EIGHTY_DAYS_TO_THREE_HUNDRED_SIXTY_FIVE_DAYS
         - GREATER_THAN_THREE_HUNDRED_SIXTY_FIVE_DAYS
-    AppAccountToken:
-      type: string
-      format: uuid
-    AppAppleId:
+    AppTransaction:
+      type: object
+      properties:
+        receiptType:
+          type: string
+        appAppleId:
+          type: integer
+          format: int64
+        bundleId:
+          type: string
+        applicationVerson:
+          type: string
+        versionExternalIdentifier:
+          type: integer
+          format: int64
+        receiptCreationDate:
+          type: integer
+          format: int64
+        originalPurchaseDate:
+          type: integer
+          format: int64
+        originalApplicationVersion:
+          type: string
+        deviceVerification:
+          type: string
+        deviceVerificationNonce:
+          type: string
+          format: uuid
+        preorderDate:
+          type: integer
+          format: int64
+    AutoRenewStatus:
       type: integer
-      format: int64
-    AttemptDate:
-      type: string
-      format: timestamp
-    BundleId:
-      type: string
+      format: int32
+      enum:
+        - 0
+        - 1
+      x-enum-varnames:
+        - RENEWAL_OFF
+        - RENEWAL_ON
     CheckTestNotificationResponse:
       type: object
       properties:
@@ -685,26 +667,19 @@ components:
           items:
             $ref: '#/components/schemas/SendAttemptItem'
         signedPayload:
-          $ref: '#/components/schemas/SignedPayload'
-        firstSendAttemptResult:
           type: string
-          deprecated: true
-    Complete:
-      type: boolean
-    CompleteDate:
-      type: string
-      format: timestamp
     ConsumptionRequest:
       type: object
       properties:
         accountTenure:
           $ref: '#/components/schemas/AccountTenure'
         appAccountToken:
-          $ref: '#/components/schemas/AppAccountToken'
+          type: string
+          format: uuid
         consumptionStatus:
           $ref: '#/components/schemas/ConsumptionStatus'
         customerConsented:
-          $ref: '#/components/schemas/CustomerConsented'
+          type: boolean
         deliveryStatus:
           $ref: '#/components/schemas/DeliveryStatus'
         lifetimeDollarsPurchased:
@@ -716,7 +691,7 @@ components:
         playTime:
           $ref: '#/components/schemas/PlayTime'
         sampleContentProvided:
-          $ref: '#/components/schemas/SampleContentProvided'
+          type: boolean
         userStatus:
           $ref: '#/components/schemas/UserStatus'
       required:
@@ -744,8 +719,22 @@ components:
        - NOT_CONSUMED
        - PARTIALLY_CONSUMED
        - FULLY_CONSUMED
-    CustomerConsented:
-      type: boolean
+    Data:
+      type: object
+      properties:
+        environment:
+          $ref: '#/components/schemas/Environment'
+        appAppId:
+          type: integer
+          format: int64
+        bundleId:
+          type: string
+        bundleVersion:
+          type: string
+        signedTransactionInfo:
+          type: string
+        status:
+          $ref: '#/components/schemas/Status'
     DeliveryStatus:
       type: integer
       format: int32
@@ -763,15 +752,19 @@ components:
        - DID_NOT_DELIVER_DUE_TO_SERVER_OUTAGE
        - DID_NOT_DELIVER_DUE_TO_IN_GAME_CURRENCY_CHANGE
        - DID_NOT_DELIVER_FOR_OTHER_REASON
-    EffectiveDate:
-      type: string
-      format: timestamp
-    EndDate:
-      type: string
-      format: unix timestamp to millisecond
     Environment:
       type: string
-    ErrorResponse:
+      enum:
+        - Sandbox
+        - Production
+        - Xcode
+        - LocalTesting
+      x-enum-varnames:
+        - SANDBOX
+        - PRODUCTION
+        - XCODE
+        - LOCAL_TESTING
+    ErrorPayload:
       type: object
       properties:
         errorCode:
@@ -782,11 +775,21 @@ components:
       required:
         - errorCode
         - errorMessage
-    ExtendByDays:
+    ExpirationIntent:
       type: integer
       format: int32
-      minimum: 1
-      maximum: 90
+      enum:
+        - 1
+        - 2
+        - 3
+        - 4
+        - 5
+      x-enum-varnames:
+        - CUSTOMER_CANCELLED
+        - BILLING_ERROR
+        - CUSTOMER_DID_NOT_CONSENT_TO_PRICE_INCREASE
+        - PRODUCT_NOT_AVAILABLE
+        - OTHER
     ExtendReasonCode:
       type: integer
       format: int32
@@ -804,11 +807,15 @@ components:
       type: object
       properties:
         extendByDays:
-          $ref: '#/components/schemas/ExtendByDays'
+          type: integer
+          format: int32
+          minimum: 1
+          maximum: 90
         extendReasonCode:
           $ref: '#/components/schemas/ExtendReasonCode'
         requestIdentifier:
-          $ref: '#/components/schemas/RequestIdentifier'
+          type: string
+          maxLength: 128
       required:
         - extendByDays
         - extendReasonCode
@@ -817,35 +824,54 @@ components:
       type: object
       properties:
         effectiveDate:
-          $ref: '#/components/schemas/EffectiveDate'
+          type: integer
+          format: int64
         originalTransactionId:
-          $ref: '#/components/schemas/OriginalTransactionId'
+          type: string
         success:
-          $ref: '#/components/schemas/Success'
+          type: boolean
         webOrderLineItemId:
-          $ref: '#/components/schemas/WebOrderLineItemId'
-    FailedCount:
-      type: integer
-      format: int64
-    HasMore:
-      type: boolean
+          type: string
+    FirstSendAttemptResult:
+      type: string
+      enum:
+        - SUCCESS
+        - TIMED_OUT
+        - TLS_ISSUE
+        - CIRCULAR_REDIRECT
+        - NO_RESPONSE
+        - SOCKET_ISSUE
+        - UNSUPPORTED_CHARSET
+        - INVALID_RESPONSE
+        - PREMATURE_CLOSE
+        - UNSUCCESSFUL_HTTP_RESPONSE_CODE
+        - OTHER
+      x-enum-varnames:
+        - SUCCESS
+        - TIMED_OUT
+        - TLS_ISSUE
+        - CIRCULAR_REDIRECT
+        - NO_RESPONSE
+        - SOCKET_ISSUE
+        - UNSUPPORTED_CHARSET
+        - INVALID_RESPONSE
+        - PREMATURE_CLOSE
+        - UNSUCCESSFUL_HTTP_RESPONSE_CODE
+        - OTHER
     HistoryResponse:
       type: object
       properties:
+        revision:
+          type: string
+        hasMore:
+          type: boolean
+        bundleId:
+          type: string
         appAppId:
           type: integer
           format: int64
-        bundleId:
-          type: string
         environment:
-          type: string
-          enum:
-            - Production
-            - Sandbox
-        hasMore:
-          type: boolean
-        revision:
-          type: string
+          $ref: '#/components/schemas/Environment'
         signedTransactions:
           type: array
           items:
@@ -855,10 +881,101 @@ components:
       enum:
         - FAMILY_SHARED
         - PURCHASED
-    JwsRenewalInfo:
-      type: string
-    JwsTransaction:
-      type: string
+      x-enum-varnames:
+        - FAMILY_SHARED
+        - PURCHASED
+    JwsRenewalInfoDecodedPayload:
+      type: object
+      properties:
+        expirationIntent:
+          type: integer
+          format: int32
+        originalTransactionId:
+          type: string
+        autoRenewProductId:
+          type: string
+        productId:
+          type: string
+        autoRenewStatus:
+          $ref: '#/components/schemas/AutoRenewStatus'
+        isInBillingRetryPeriod:
+          type: boolean
+        priceIncreaseStatus:
+          $ref: '#/components/schemas/PriceIncreaseStatus'
+        gracePeriodExpiresDate:
+          type: integer
+          format: int64
+        offerType:
+          $ref: '#/components/schemas/OfferType'
+        offerIdentifier:
+          type: string
+        signedDate:
+          type: integer
+          format: int64
+        environment:
+          $ref: '#/components/schemas/Environment'
+        recentSubscriptionStartDate:
+          type: integer
+          format: int64
+        renewalDate:
+          type: integer
+          format: int64
+    JwsTransactionDecodedPayload:
+      type: object
+      properties:
+        originalTransactionId:
+          type: string
+        transactionId:
+          type: string
+        webOrderLineItemId:
+          type: string
+        bundleId:
+          type: string
+        productId:
+          type: string
+        subscriptionGroupIdentifier:
+          type: string
+        purchaseDate:
+          type: integer
+          format: int64
+        originalPurchaseDate:
+          type: integer
+          format: int64
+        expiredDate:
+          type: integer
+          format: int64
+        quantity:
+          type: integer
+          format: int32
+        type:
+          $ref: '#/components/schemas/TypeProduct'
+        appAccountToken:
+          type: string
+          format: uuid
+        inAppOwnershipType:
+          $ref: '#/components/schemas/InAppOwnershipType'
+        signedDate:
+          type: integer
+          format: int64
+        revocationReason:
+          $ref: '#/components/schemas/RevocationReason'
+        revocationDate:
+          type: integer
+          format: int64
+        isUpgraded:
+          type: boolean
+        offerType:
+          $ref: '#/components/schemas/OfferType'
+        offerIdentifier:
+          type: string
+        environment:
+          $ref: '#/components/schemas/Environment'
+        storefront:
+          type: string
+        storefrontId:
+          type: string
+        transactionReason:
+          $ref: '#/components/schemas/TransactionReason'
     LastTransactionsItem:
       type: object
       properties:
@@ -867,9 +984,9 @@ components:
         status:
           $ref: '#/components/schemas/Status'
         signedRenewalInfo:
-          $ref: '#/components/schemas/JwsRenewalInfo'
+          type: string
         signedTransactionInfo:
-          $ref: '#/components/schemas/JwsTransaction'
+          type: string
     LifetimeDollarsPurchased:
       type: integer
       format: int32
@@ -915,15 +1032,21 @@ components:
       type: object
       properties:
         requestIdentifier:
-          $ref: '#/components/schemas/RequestIdentifier'
+          type: string
+          maxLength: 128
         extendByDays:
-          $ref: '#/components/schemas/ExtendByDays'
+          type: integer
+          format: int32
+          minimum: 1
+          maximum: 90
         extendReasonCode:
           $ref: '#/components/schemas/ExtendReasonCode'
         productId:
-          $ref: '#/components/schemas/ProductId'
+          type: string
         storefrontCountryCodes:
-          $ref: '#/components/schemas/StorefrontCountryCodes'
+          type: array
+          items:
+            type: string
       required:
         - requestIdentifier
         - extendByDays
@@ -933,52 +1056,56 @@ components:
       type: object
       properties:
         requestIdentifier:
-          $ref: '#/components/schemas/RequestIdentifier'
+          type: string
+          maxLength: 128
     MassExtendRenewalDateStatusResponse:
       type: object
       properties:
         requestIdentifier:
-          $ref: '#/components/schemas/RequestIdentifier'
+          type: string
+          maxLength: 128
         complete:
-          $ref: '#/components/schemas/Complete'
+          type: boolean
         completeDate:
-          $ref: '#/components/schemas/CompleteDate'
+          type: integer
+          format: int64
         failedCount:
-          $ref: '#/components/schemas/FailedCount'
+          type: integer
+          format: int64
         succeededCount:
-          $ref: '#/components/schemas/SucceededCount'
+          type: integer
+          format: int64
     NotificationHistoryRequest:
       type: object
       properties:
         startDate:
-          $ref: '#/components/schemas/StartDate'
+          type: integer
+          format: int64
         endDate:
-          $ref: '#/components/schemas/EndDate'
+          type: integer
+          format: int64
         notificationType:
           $ref: '#/components/schemas/NotificationTypeV2'
         notificationSubtype:
-          $ref: '#/components/schemas/NotificationSubtypeV2'
+          $ref: '#/components/schemas/Subtype'
         onlyFailures:
-          $ref: '#/components/schemas/OnlyFailures'
+          type: boolean
         transactionId:
-          $ref: '#/components/schemas/TransactionId'
-        originalTransactionId:
           type: string
-          deprecated: true
       required:
         - startDate
         - endDate
     NotificationHistoryResponse:
       type: object
       properties:
+        hasMore:
+          type: boolean
         notificationHistory:
           type: array
           items:
             $ref: '#/components/schemas/NotificationHistoryResponseItem'
-        hasMore:
-          $ref: '#/components/schemas/HasMore'
         paginationToken:
-          $ref: '#/components/schemas/PaginationToken'
+          type: string
     NotificationHistoryResponseItem:
       type: object
       properties:
@@ -987,29 +1114,7 @@ components:
           items:
             $ref: '#/components/schemas/SendAttemptItem'
         signedPayload:
-          $ref: '#/components/schemas/SignedPayload'
-        firstSendAttemptResult:
           type: string
-          deprecated: true
-    NotificationSubtypeV2:
-      type: string
-      enum:
-        - ACCEPTED
-        - AUTO_RENEW_DISABLED
-        - AUTO_RENEW_ENABLED
-        - BILLING_RECOVERY
-        - BILLING_RETRY
-        - DOWNGRADE
-        - FAILURE
-        - GRACE_PERIOD
-        - INITIAL_BUY
-        - PENDING
-        - PRICE_INCREASE
-        - PRODUCT_NOT_FOR_SALE
-        - RESUBSCRIBE
-        - SUMMARY
-        - UPGRADE
-        - VOLUNTARY
     NotificationTypeV2:
       type: string
       enum:
@@ -1030,10 +1135,44 @@ components:
         - REVOKE
         - SUBSCRIBED
         - TEST
-    OnlyFailures:
-      type: boolean
-    OrderId:
-      type: string
+      x-enum-varnames:
+        - CONSUMPTION_REQUEST
+        - DID_CHANGE_RENEWAL_PREF
+        - DID_CHANGE_RENEWAL_STATUS
+        - DID_FAIL_TO_RENEW
+        - DID_RENEW
+        - EXPIRED
+        - GRACE_PERIOD_EXPIRED
+        - OFFER_REDEEMED
+        - PRICE_INCREASE
+        - REFUND
+        - REFUND_DECLINED
+        - REFUND_REVERSED
+        - RENEWAL_EXTENDED
+        - RENEWAL_EXTENSION
+        - REVOKE
+        - SUBSCRIBED
+        - TEST
+    OfferType:
+      type: integer
+      format: int32
+      enum:
+        - 1
+        - 2
+        - 3
+      x-enum-varnames:
+        - INTRODUCTORY_OFFER
+        - PROMOTIONAL_OFFER
+        - SUBSCRIPTION_OFFER_CODE
+    Order:
+      type: integer
+      format: int32
+      enum:
+        - 0
+        - 1
+      x-enum-varnames:
+        - ASCENDING
+        - DESCENDING
     OrderLookupResponse:
       type: object
       properties:
@@ -1042,7 +1181,7 @@ components:
         signedTransactions:
           type: array
           items:
-            $ref: '#/components/schemas/JwsTransaction'
+            type: string
     OrderLookupStatus:
       type: integer
       format: int32
@@ -1052,10 +1191,6 @@ components:
       x-enum-varnames:
         - VALID
         - INVALID
-    OriginalTransactionId:
-      type: string
-    PaginationToken:
-      type: string
     Platform:
       type: integer
       format: int32
@@ -1088,11 +1223,24 @@ components:
         - ONE_DAY_TO_FOUR_DAYS
         - FOUR_DAYS_TO_SIXTEEN_DAYS
         - OVER_SIXTEEN_DAYS
-    ProductId:
-      type: string
-    ProductType:
-      type: string
+    PriceIncreaseStatus:
+      type: integer
+      format: int32
       enum:
+        - 0
+        - 1
+      x-enum-varnames:
+        - CUSTOMER_HAS_NOT_RESPONDED
+        - CUSTOMER_CONSENTED_OR_WAS_NOTIFIED_WITHOUT_NEEDING_CONSENT
+    ProductType:
+      type: integer
+      format: int32
+      enum:
+        - 0
+        - 1
+        - 2
+        - 3
+      x-enum-varnames:
         - AUTO_RENEWABLE
         - NON_RENEWABLE
         - CONSUMABLE
@@ -1101,33 +1249,52 @@ components:
       type: object
       properties:
         hasMore:
-          $ref: '#/components/schemas/HasMore'
+          type: boolean
         revision:
-          $ref: '#/components/schemas/Revision'
+          type: string
         signedTransactions:
           type: array
           items:
-            $ref: '#/components/schemas/JwsTransaction'
-    RefundLookupResponse:
-      deprecated: true
+            type: string
+    ResponseBodyV2:
       type: object
       properties:
-        signedTransactions:
-          type: array
-          items:
-            $ref: '#/components/schemas/JwsTransaction'
-    RequestIdentifier:
-      type: string
-      maxLength: 128
-    Revision:
-      type: string
-    SampleContentProvided:
-      type: boolean
+        signedPayload:
+          type: string
+    ResponseBodyV2DecodedPayload:
+      type: object
+      properties:
+        notificationType:
+          $ref: '#/components/schemas/NotificationTypeV2'
+        subtype:
+          $ref: '#/components/schemas/Subtype'
+        notificationUuid:
+          type: string
+          format: uuid
+        data:
+          $ref: '#/components/schemas/Data'
+        version:
+          type: string
+        signedDate:
+          type: integer
+          format: int64
+        summary:
+          $ref: '#/components/schemas/Summary'
+    RevocationReason:
+      type: integer
+      format: int32
+      enum:
+        - 0
+        - 1
+      x-enum-varnames:
+        - REFUNDED_FOR_OTHER_REASON
+        - REFUNDED_DUE_TO_ISSUE
     SendAttemptItem:
       type: object
       properties:
         attemptDate:
-          $ref: '#/components/schemas/AttemptDate'
+          type: integer
+          format: int64
         sendAttemptResult:
           $ref: '#/components/schemas/SendAttemptResult'
     SendAttemptResult:
@@ -1144,21 +1311,23 @@ components:
         - TLS_ISSUE
         - UNSUCCESSFUL_HTTP_RESPONSE_CODE
         - UNSUPPORTED_CHARSET
+      x-enum-varnames:
+        - SUCCESS
+        - CIRCULAR_REDIRECT
+        - INVALID_RESPONSE
+        - NO_RESPONSE
+        - OTHER
+        - PREMATURE_CLOSE
+        - SOCKET_ISSUE
+        - TIMED_OUT
+        - TLS_ISSUE
+        - UNSUCCESSFUL_HTTP_RESPONSE_CODE
+        - UNSUPPORTED_CHARSET
     SendTestNotificationResponse:
       type: object
       properties:
         testNotificationToken:
-          $ref: '#/components/schemas/TestNotificationToken'
-    SignedPayload:
-      type: string
-    Sort:
-      type: string
-      enum:
-        - ASCENDING
-        - DESCENDING
-    StartDate:
-      type: string
-      format: unix timestamp to millisecond
+          type: string
     Status:
       type: integer
       format: int32
@@ -1184,40 +1353,131 @@ components:
         environment:
           $ref: '#/components/schemas/Environment'
         appAppleId:
-          $ref: '#/components/schemas/AppAppleId'
+          type: integer
+          format: int64
         bundleId:
-          $ref: '#/components/schemas/BundleId'
-    StorefrontCountryCode:
-      type: string
-    StorefrontCountryCodes:
-      type: array
-      items:
-        $ref: '#/components/schemas/StorefrontCountryCode'
-    SubscriptionGroupIdentifier:
-      type: string
+          type: string
     SubscriptionGroupIdentifierItem:
       type: object
       properties:
         subscriptionGroupIdentifier:
-          $ref: '#/components/schemas/SubscriptionGroupIdentifier'
+          type: string
         lastTransactions:
           type: array
           items:
             $ref: '#/components/schemas/LastTransactionsItem'
-    SucceededCount:
-      type: integer
-      format: int64
-    Success:
-      type: boolean
-    TestNotificationToken:
+    Subtype:
       type: string
-    TransactionId:
-      type: string
+      enum:
+        - ACCEPTED
+        - AUTO_RENEW_DISABLED
+        - AUTO_RENEW_ENABLED
+        - BILLING_RECOVERY
+        - BILLING_RETRY
+        - DOWNGRADE
+        - FAILURE
+        - GRACE_PERIOD
+        - INITIAL_BUY
+        - PENDING
+        - PRICE_INCREASE
+        - PRODUCT_NOT_FOR_SALE
+        - RESUBSCRIBE
+        - SUMMARY
+        - UPGRADE
+        - VOLUNTARY
+      x-enum-varnames:
+        - ACCEPTED
+        - AUTO_RENEW_DISABLED
+        - AUTO_RENEW_ENABLED
+        - BILLING_RECOVERY
+        - BILLING_RETRY
+        - DOWNGRADE
+        - FAILURE
+        - GRACE_PERIOD
+        - INITIAL_BUY
+        - PENDING
+        - PRICE_INCREASE
+        - PRODUCT_NOT_FOR_SALE
+        - RESUBSCRIBE
+        - SUMMARY
+        - UPGRADE
+        - VOLUNTARY
+    Summary:
+      type: object
+      properties:
+        environment:
+          $ref: '#/components/schemas/Environment'
+        appAppleId:
+          type: integer
+          format: int64
+        bundleId:
+          type: string
+        productId:
+          type: string
+        requestIdentifier:
+          type: string
+        storefrontCountryCodes:
+          type: array
+          items:
+            type: string
+        succeededCount:
+          type: integer
+          format: int64
+        failedCount:
+          type: integer
+          format: int64
+    TransactionHistoryRequest:
+      type: object
+      properties:
+        startDate:
+          type: integer
+          format: int64
+        endDate:
+          type: integer
+          format: int64
+        productIds:
+          type: array
+          items:
+            type: string
+        productTypes:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProductType'
+        sort:
+            $ref: '#/components/schemas/Order'
+        subscriptionGroupIdentifiers:
+          type: array
+          items:
+            type: string
+        inAppOwnershipType:
+          $ref: '#/components/schemas/InAppOwnershipType'
+        revoked:
+          type: boolean
     TransactionInfoResponse:
       type: object
       properties:
         signedTransactionInfo:
           type: string
+    TransactionReason:
+      type: string
+      enum:
+        - PURCHASE
+        - RENEWAL
+      x-enum-varnames:
+        - PURCHASE
+        - RENEWAL
+    TypeProduct:
+      type: string
+      enum:
+        - Auto-Renewable Subscription
+        - Non-Consumable
+        - Consumable
+        - Non-Renewing Subscription
+      x-enum-varnames:
+        - AUTO_RENEWABLE_SUBSCRIPTION
+        - NON_CONSUMABLE
+        - CONSUMABLE
+        - NON_RENEWING_SUBSCRIPTION
     UserStatus:
       type: integer
       format: int32
@@ -1233,8 +1493,6 @@ components:
         - SUSPENDED
         - TERMINATED
         - LIMITED_ACCESS
-    WebOrderLineItemId:
-      type: string
   securitySchemes:
     BearerAuth:
       type: http
