@@ -3,10 +3,10 @@ info:
   title: App Store Server API
   version: 1.9.0
 servers:
-  - url: https://api.storekit.itunes.apple.com/
-    description: Production
   - url: https://api.storekit-sandbox.itunes.apple.com/
     description: Sandbox
+  - url: https://api.storekit.itunes.apple.com/
+    description: Production
 tags:
   - name: inApps
 paths:
@@ -69,36 +69,36 @@ paths:
           schema:
             type: boolean
       responses:
-        200:
+        '200':
           description: _
           content:
-            'application/json':
+            application/json:
               schema:
                 $ref: '#/components/schemas/historyResponse'
-        400:
+        '400':
           description: _
           content:
-            'application/json':
+            application/json:
               schema:
                 $ref: '#/components/schemas/errorResponse'
-        401:
+        '401':
           description: _
-        404:
+        '404':
           description: _
           content:
-            'application/json':
+            application/json:
               schema:
                 $ref: '#/components/schemas/errorResponse'
-        429:
+        '429':
           description: _
           content:
-            'application/json':
+            application/json:
               schema:
                 $ref: '#/components/schemas/errorResponse'
-        500:
+        '500':
           description: _
           content:
-            'application/json':
+            application/json:
               schema:
                 $ref: '#/components/schemas/errorResponse'
   /inApps/v1/transactions/{transactionId}:
@@ -113,36 +113,36 @@ paths:
           schema:
             $ref: '#/components/schemas/transactionId'
       responses:
-        200:
+        '200':
           description: _
           content:
-            'application/json':
+            application/json:
               schema:
                 $ref: '#/components/schemas/transactionInfoResponse'
-        400:
+        '400':
           description: _
           content:
-            'application/json':
+            application/json:
               schema:
                 $ref: '#/components/schemas/errorResponse'
-        401:
+        '401':
           description: _
-        404:
+        '404':
           description: _
           content:
-            'application/json':
+            application/json:
               schema:
                 $ref: '#/components/schemas/errorResponse'
-        429:
+        '429':
           description: _
           content:
-            'application/json':
+            application/json:
               schema:
                 $ref: '#/components/schemas/errorResponse'
-        500:
+        '500':
           description: _
           content:
-            'application/json':
+            application/json:
               schema:
                 $ref: '#/components/schemas/errorResponse'
   /inApps/v1/subscriptions/{transactionId}:
@@ -163,36 +163,36 @@ paths:
             items:
               $ref: '#/components/schemas/status'
       responses:
-        200:
+        '200':
           description: _
           content:
-            'application/json':
+            application/json:
               schema:
                 $ref: '#/components/schemas/statusResponse'
-        400:
+        '400':
           description: _
           content:
-            'application/json':
+            application/json:
               schema:
                 $ref: '#/components/schemas/errorResponse'
-        401:
+        '401':
           description: _
-        404:
+        '404':
           description: _
           content:
-            'application/json':
+            application/json:
               schema:
                 $ref: '#/components/schemas/errorResponse'
-        429:
+        '429':
           description: _
           content:
-            'application/json':
+            application/json:
               schema:
                 $ref: '#/components/schemas/errorResponse'
-        500:
+        '500':
           description: _
           content:
-            'application/json':
+            application/json:
               schema:
                 $ref: '#/components/schemas/errorResponse'
   /inApps/v1/transactions/consumption/{transactionId}:
@@ -209,36 +209,36 @@ paths:
             $ref: '#/components/schemas/transactionId'
       requestBody:
         content:
-          'application/json':
+          application/json:
             schema:
               $ref: '#/components/schemas/consumptionRequest'
       responses:
-        202:
+        '202':
           description: _
-        400:
+        '400':
           description: _
           content:
-            'application/json':
+            application/json:
               schema:
                 $ref: '#/components/schemas/errorResponse'
-        401:
+        '401':
           description: _
-        404:
+        '404':
           description: _
           content:
-            'application/json':
+            application/json:
               schema:
                 $ref: '#/components/schemas/errorResponse'
-        429:
+        '429':
           description: _
           content:
-            'application/json':
+            application/json:
               schema:
                 $ref: '#/components/schemas/errorResponse'
-        500:
+        '500':
           description: _
           content:
-            'application/json':
+            application/json:
               schema:
                 $ref: '#/components/schemas/errorResponse'
   /inApps/v1/lookup/{orderId}:
@@ -253,30 +253,30 @@ paths:
           schema:
             $ref: '#/components/schemas/orderId'
       responses:
-        200:
+        '200':
           description: _
           content:
-            'application/json':
+            application/json:
               schema:
                 $ref: '#/components/schemas/orderLookupResponse'
-        400:
+        '400':
           description: _
           content:
-            'application/json':
+            application/json:
               schema:
                 $ref: '#/components/schemas/errorResponse'
-        401:
+        '401':
           description: _
-        429:
+        '429':
           description: _
           content:
-            'application/json':
+            application/json:
               schema:
                 $ref: '#/components/schemas/errorResponse'
-        500:
+        '500':
           description: _
           content:
-            'application/json':
+            application/json:
               schema:
                 $ref: '#/components/schemas/errorResponse'
   /inApps/v2/refund/lookup/{transactionId}:
@@ -295,36 +295,36 @@ paths:
           schema:
             $ref: '#/components/schemas/revision'
       responses:
-        200:
+        '200':
           description: _
           content:
-            'application/json':
+            application/json:
               schema:
                 $ref: '#/components/schemas/refundHistoryResponse'
-        400:
+        '400':
           description: _
           content:
-            'application/json':
+            application/json:
               schema:
                 $ref: '#/components/schemas/errorResponse'
-        401:
+        '401':
           description: _
-        404:
+        '404':
           description: _
           content:
-            'application/json':
+            application/json:
               schema:
                 $ref: '#/components/schemas/errorResponse'
-        429:
+        '429':
           description: _
           content:
-            'application/json':
+            application/json:
               schema:
                 $ref: '#/components/schemas/errorResponse'
-        500:
+        '500':
           description: _
           content:
-            'application/json':
+            application/json:
               schema:
                 $ref: '#/components/schemas/errorResponse'
   /inApps/v1/refund/lookup/{originalTransactionId}:
@@ -340,36 +340,36 @@ paths:
           schema:
             $ref: '#/components/schemas/originalTransactionId'
       responses:
-        200:
+        '200':
           description: _
           content:
-            'application/json':
+            application/json:
               schema:
                 $ref: '#/components/schemas/refundLookupResponse'
-        400:
+        '400':
           description: _
           content:
-            'application/json':
+            application/json:
               schema:
                 $ref: '#/components/schemas/errorResponse'
-        401:
+        '401':
           description: _
-        404:
+        '404':
           description: _
           content:
-            'application/json':
+            application/json:
               schema:
                 $ref: '#/components/schemas/errorResponse'
-        429:
+        '429':
           description: _
           content:
-            'application/json':
+            application/json:
               schema:
                 $ref: '#/components/schemas/errorResponse'
-        500:
+        '500':
           description: _
           content:
-            'application/json':
+            application/json:
               schema:
                 $ref: '#/components/schemas/errorResponse'
   /inApps/v1/subscriptions/extend/{originalTransactionId}:
@@ -385,46 +385,46 @@ paths:
             $ref: '#/components/schemas/originalTransactionId'
       requestBody:
         content:
-          'application/json':
+          application/json:
             schema:
               $ref: '#/components/schemas/extendRenewalDateRequest'
       responses:
-        200:
+        '200':
           description: _
           content:
-            'application/json':
+            application/json:
               schema:
                 $ref: '#/components/schemas/extendRenewalDateResponse'
-        400:
+        '400':
           description: _
           content:
-            'application/json':
+            application/json:
               schema:
                 $ref: '#/components/schemas/errorResponse'
-        401:
+        '401':
           description: _
-        403:
+        '403':
           description: _
           content:
-            'application/json':
+            application/json:
               schema:
                 $ref: '#/components/schemas/errorResponse'
-        404:
+        '404':
           description: _
           content:
-            'application/json':
+            application/json:
               schema:
                 $ref: '#/components/schemas/errorResponse'
-        429:
+        '429':
           description: _
           content:
-            'application/json':
+            application/json:
               schema:
                 $ref: '#/components/schemas/errorResponse'
-        500:
+        '500':
           description: _
           content:
-            'application/json':
+            application/json:
               schema:
                 $ref: '#/components/schemas/errorResponse'        
   /inApps/v1/subscriptions/extend/mass/:
@@ -434,46 +434,46 @@ paths:
         - inApps
       requestBody:
         content:
-          'application/json':
+          application/json:
             schema:
               $ref: '#/components/schemas/massExtendRenewalDateRequest'
       responses:
-        200:
+        '200':
           description: _
           content:
-            'application/json':
+            application/json:
               schema:
                 $ref: '#/components/schemas/massExtendRenewalDateResponse'
-        400:
+        '400':
           description: _
           content:
-            'application/json':
+            application/json:
               schema:
                 $ref: '#/components/schemas/errorResponse'
-        401:
+        '401':
           description: _
-        403:
+        '403':
           description: _
           content:
-            'application/json':
+            application/json:
               schema:
                 $ref: '#/components/schemas/errorResponse'
-        404:
+        '404':
           description: _
           content:
-            'application/json':
+            application/json:
               schema:
                 $ref: '#/components/schemas/errorResponse'
-        429:
+        '429':
           description: _
           content:
-            'application/json':
+            application/json:
               schema:
                 $ref: '#/components/schemas/errorResponse'
-        500:
+        '500':
           description: _
           content:
-            'application/json':
+            application/json:
               schema:
                 $ref: '#/components/schemas/errorResponse'        
   /inApps/v1/subscriptions/extend/mass/{productId}/{requestIdentifier}:
@@ -493,30 +493,30 @@ paths:
           schema:
             $ref: '#/components/schemas/requestIdentifier'
       responses:
-        200:
+        '200':
           description: _
           content:
-            'application/json':
+            application/json:
               schema:
                 $ref: '#/components/schemas/massExtendRenewalDateStatusResponse'
-        400:
+        '400':
           description: _
           content:
-            'application/json':
+            application/json:
               schema:
                 $ref: '#/components/schemas/errorResponse'
-        401:
+        '401':
           description: _
-        429:
+        '429':
           description: _
           content:
-            'application/json':
+            application/json:
               schema:
                 $ref: '#/components/schemas/errorResponse'
-        500:
+        '500':
           description: _
           content:
-            'application/json':
+            application/json:
               schema:
                 $ref: '#/components/schemas/errorResponse'        
   /inApps/v1/notifications/history:
@@ -531,40 +531,40 @@ paths:
             $ref: '#/components/schemas/paginationToken'
       requestBody:
         content:
-          'application/json':
+          application/json:
             schema:
               $ref: '#/components/schemas/notificationHistoryRequest'
       responses:
-        200:
+        '200':
           description: _
           content:
-            'application/json':
+            application/json:
               schema:
                 $ref: '#/components/schemas/notificationHistoryResponse'
-        400:
+        '400':
           description: _
           content:
-            'application/json':
+            application/json:
               schema:
                 $ref: '#/components/schemas/errorResponse'
-        401:
+        '401':
           description: _
-        404:
+        '404':
           description: _
           content:
-            'application/json':
+            application/json:
               schema:
                 $ref: '#/components/schemas/errorResponse'
-        429:
+        '429':
           description: _
           content:
-            'application/json':
+            application/json:
               schema:
                 $ref: '#/components/schemas/errorResponse'
-        500:
+        '500':
           description: _
           content:
-            'application/json':
+            application/json:
               schema:
                 $ref: '#/components/schemas/errorResponse'        
   /inApps/v1/notifications/test:
@@ -573,30 +573,30 @@ paths:
       tags:
         - inApps
       responses:
-        200:
+        '200':
           description: _
           content:
-            'application/json':
+            application/json:
               schema:
                 $ref: '#/components/schemas/sendTestNotificationResponse'
-        401:
+        '401':
           description: _
-        404:
+        '404':
           description: _
           content:
-            'application/json':
+            application/json:
               schema:
                 $ref: '#/components/schemas/errorResponse'
-        429:
+        '429':
           description: _
           content:
-            'application/json':
+            application/json:
               schema:
                 $ref: '#/components/schemas/errorResponse'
-        500:
+        '500':
           description: _
           content:
-            'application/json':
+            application/json:
               schema:
                 $ref: '#/components/schemas/errorResponse'        
   /inApps/v1/notifications/test/{testNotificationToken}:
@@ -611,36 +611,36 @@ paths:
           schema:
             $ref: '#/components/schemas/testNotificationToken'
       responses:
-        200:
+        '200':
           description: _
           content:
-            'application/json':
+            application/json:
               schema:
                 $ref: '#/components/schemas/checkTestNotificationResponse'
-        400:
+        '400':
           description: _
           content:
-            'application/json':
+            application/json:
               schema:
                 $ref: '#/components/schemas/errorResponse'
-        401:
+        '401':
           description: _
-        404:
+        '404':
           description: _
           content:
-            'application/json':
+            application/json:
               schema:
                 $ref: '#/components/schemas/errorResponse'
-        429:
+        '429':
           description: _
           content:
-            'application/json':
+            application/json:
               schema:
                 $ref: '#/components/schemas/errorResponse'
-        500:
+        '500':
           description: _
           content:
-            'application/json':
+            application/json:
               schema:
                 $ref: '#/components/schemas/errorResponse'              
 components:
@@ -734,7 +734,11 @@ components:
     consumptionStatus:
       type: integer
       format: int32
-      enum: [ 0, 1, 2, 3 ]
+      enum:
+        - 0
+        - 1
+        - 2
+        - 3
       x-enum-vernames:
        - UNDECLARED
        - NOT_CONSUMED
@@ -745,7 +749,13 @@ components:
     deliveryStatus:
       type: integer
       format: int32
-      enum: [ 0, 1, 2, 3, 4, 5 ]
+      enum:
+        - 0
+        - 1
+        - 2
+        - 3
+        - 4
+        - 5
       x-enum-varnames:
        - DELIVERED_AND_WORKING_PROPERLY
        - DID_NOT_DELIVER_DUE_TO_QUALITY_ISSUE
@@ -777,7 +787,11 @@ components:
     extendReasonCode:
       type: integer
       format: int32
-      enum: [ 0, 1, 2, 3 ]
+      enum:
+        - 0
+        - 1
+        - 2
+        - 3
       x-enum-varnames:
         - UNDECLARED
         - CUSTOMER_SATISFACTION
@@ -856,7 +870,15 @@ components:
     lifetimeDollarsPurchased:
       type: integer
       format: int32
-      enum: [ 0, 1, 2, 3, 4, 5, 6, 7 ]
+      enum:
+        - 0
+        - 1
+        - 2
+        - 3
+        - 4
+        - 5
+        - 6
+        - 7
       x-enum-varnames:
         - UNDECLARED
         - ZERO_DOLLARS
@@ -869,7 +891,14 @@ components:
     lifetimeDollarsRefunded:
       type: integer
       format: int32
-      enum: [ 0, 1, 2, 3, 4, 6, 7 ]
+      enum:
+        - 0
+        - 1
+        - 2
+        - 3
+        - 4
+        - 6
+        - 7
       x-enum-varnames:
         - UNDECLARED
         - ZERO_DOLLARS
@@ -1014,7 +1043,9 @@ components:
     orderLookupStatus:
       type: integer
       format: int32
-      enum: [ 0, 1 ]
+      enum:
+        - 0
+        - 1
       x-enum-varnames:
         - VALID
         - INVALID
@@ -1025,7 +1056,10 @@ components:
     platform:
       type: integer
       format: int32
-      enum: [ 0, 1, 2 ]
+      enum:
+        - 0
+        - 1
+        - 2
       x-enum-varnames:
         - UNDECLARED
         - APPLE
@@ -1033,7 +1067,15 @@ components:
     playTime:
       type: integer
       format: int32
-      enum: [ 0, 1, 2, 3, 4, 5, 6, 7 ]
+      enum:
+        - 0
+        - 1
+        - 2
+        - 3
+        - 4
+        - 5
+        - 6
+        - 7
       x-enum-varnames:
         - UNDECLARED
         - ZERO_TO_FIVE_MINUTES
@@ -1117,7 +1159,12 @@ components:
     status:
       type: integer
       format: int32
-      enum: [ 1, 2, 3, 4, 5 ]
+      enum:
+        - 1
+        - 2
+        - 3
+        - 4
+        - 5
       x-enum-varnames:
         - ACTIVE
         - EXPIRED
@@ -1171,7 +1218,12 @@ components:
     userStatus:
       type: integer
       format: int32
-      enum: [ 0, 1, 2, 3, 4 ]
+      enum:
+        - 0
+        - 1
+        - 2
+        - 3
+        - 4
       x-enum-varnames:
         - UNDECLARED
         - ACTIVE
