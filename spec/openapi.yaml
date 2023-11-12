@@ -10,7 +10,7 @@ servers:
 tags:
   - name: InApps
 paths:
-  /InApps/v1/history/{transactionId}:
+  /inApps/v1/history/{transactionId}:
     get:
       operationId: GetTransactionHistory
       tags:
@@ -98,7 +98,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorPayload'
-  /InApps/v1/transactions/{transactionId}:
+  /inApps/v1/transactions/{transactionId}:
     get:
       operationId: GetTransactionInfo
       tags:
@@ -142,7 +142,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorPayload'
-  /InApps/v1/subscriptions/{transactionId}:
+  /inApps/v1/subscriptions/{transactionId}:
     get:
       operationId: GetAllSubscriptionStatuses
       tags:
@@ -192,7 +192,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorPayload'
-  /InApps/v1/transactions/consumption/{transactionId}:
+  /inApps/v1/transactions/consumption/{transactionId}:
     summary: Send consumption information.
     put:
       operationId: SendConsumptionInformation
@@ -238,7 +238,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorPayload'
-  /InApps/v1/lookup/{orderId}:
+  /inApps/v1/lookup/{orderId}:
     get:
       operationId: LookUpOrderId
       tags:
@@ -276,7 +276,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorPayload'
-  /InApps/v2/refund/lookup/{transactionId}:
+  /inApps/v2/refund/lookup/{transactionId}:
     get:
       operationId: GetRefundHistoryV2
       tags:
@@ -324,7 +324,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorPayload'
-  /InApps/v1/subscriptions/extend/{originalTransactionId}:
+  /inApps/v1/subscriptions/extend/{originalTransactionId}:
     put:
       operationId: ExtendSubscriptionRenewalDate
       tags:
@@ -379,7 +379,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorPayload'
-  /InApps/v1/subscriptions/extend/mass/:
+  /inApps/v1/subscriptions/extend/mass/:
     post:
       operationId: ExtendSubscriptionRenewalDatesForAllActiveSubscribers
       tags:
@@ -428,7 +428,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorPayload'
-  /InApps/v1/subscriptions/extend/mass/{productId}/{requestIdentifier}:
+  /inApps/v1/subscriptions/extend/mass/{productId}/{requestIdentifier}:
     get:
       operationId: GetStatusOfSubscriptionRenewalDateExtensions
       tags:
@@ -472,7 +472,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorPayload'
-  /InApps/v1/notifications/history:
+  /inApps/v1/notifications/history:
     post:
       operationId: GetNotificationHistory
       tags:
@@ -520,7 +520,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorPayload'
-  /InApps/v1/notifications/test:
+  /inApps/v1/notifications/test:
     post:
       operationId: RequestTestNotification
       tags:
@@ -552,7 +552,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorPayload'
-  /InApps/v1/notifications/test/{testNotificationToken}:
+  /inApps/v1/notifications/test/{testNotificationToken}:
     get:
       operationId: GetTestNotificationStatus
       tags:
@@ -724,7 +724,7 @@ components:
       properties:
         environment:
           $ref: '#/components/schemas/Environment'
-        appAppId:
+        appAppleId:
           type: integer
           format: int64
         bundleId:
@@ -867,7 +867,7 @@ components:
           type: boolean
         bundleId:
           type: string
-        appAppId:
+        appAppleId:
           type: integer
           format: int64
         environment:
