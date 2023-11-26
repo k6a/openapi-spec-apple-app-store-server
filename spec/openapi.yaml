@@ -976,6 +976,13 @@ components:
           type: string
         transactionReason:
           $ref: '#/components/schemas/TransactionReason'
+        price:
+          type: integer
+          format: int32
+        currency:
+          type: string
+        offerDiscountType:
+          $ref: '#/components/schemas/OfferDiscountType'
     LastTransactionsItem:
       type: object
       properties:
@@ -1258,6 +1265,16 @@ components:
         - REVOKE
         - SUBSCRIBED
         - TEST
+    OfferDiscountType:
+      type: string
+      enum:
+        - FREE_TRIAL
+        - PAY_AS_YOU_GO
+        - PAY_UP_FRONT
+      x-enum-varnames:
+        - FREE_TRIAL
+        - PAY_AS_YOU_GO
+        - PAY_UP_FRONT
     OfferType:
       type: integer
       format: int32
