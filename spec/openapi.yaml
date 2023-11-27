@@ -1,7 +1,7 @@
 openapi: 3.0.3
 info:
   title: App Store Server API
-  version: 1.9.0
+  version: 1.10.0
 servers:
   - url: https://api.storekit-sandbox.itunes.apple.com/
     description: Sandbox
