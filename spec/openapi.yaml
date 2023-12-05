@@ -1442,8 +1442,8 @@ components:
             - true
             - false
           x-enum-varnames:
-            - TRUE
-            - FALSE
+            - AUTO_RENEW_ON
+            - AUTO_RENEW_OFF
         auto_renew_status_change_date:
           type: string
         auto_renew_status_change_date_ms:
