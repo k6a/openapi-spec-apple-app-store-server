@@ -991,7 +991,7 @@ components:
           $ref: '#/components/schemas/TransactionReason'
         price:
           type: integer
-          format: int32
+          format: int64
         currency:
           type: string
         offerDiscountType:
