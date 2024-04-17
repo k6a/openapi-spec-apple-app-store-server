@@ -832,6 +832,19 @@ components:
           type: boolean
         webOrderLineItemId:
           type: string
+    ExternalPurchaseToken:
+      type: object
+      properties:
+        externalPurchaseId:
+          type: string
+        tokenCreationDate:
+          type: integer
+          format: int64
+        appAppleId:
+          type: integer
+          format: int64
+        bundleId:
+          type: string
     FirstSendAttemptResult:
       type: string
       enum:
@@ -1236,6 +1249,7 @@ components:
         - DID_FAIL_TO_RENEW
         - DID_RENEW
         - EXPIRED
+        - EXTERNAL_PURCHASE_TOKEN
         - GRACE_PERIOD_EXPIRED
         - OFFER_REDEEMED
         - PRICE_INCREASE
@@ -1254,6 +1268,7 @@ components:
         - DID_FAIL_TO_RENEW
         - DID_RENEW
         - EXPIRED
+        - EXTERNAL_PURCHASE_TOKEN
         - GRACE_PERIOD_EXPIRED
         - OFFER_REDEEMED
         - PRICE_INCREASE
@@ -1501,6 +1516,8 @@ components:
           format: int64
         summary:
           $ref: '#/components/schemas/Summary'
+        externalPurchaseToken:
+          $ref: '#/components/schemas/ExternalPurchaseToken'
     RevocationReason:
       type: integer
       format: int32
@@ -1605,6 +1622,7 @@ components:
         - RESUBSCRIBE
         - SUMMARY
         - UPGRADE
+        - UNREPORTED
         - VOLUNTARY
       x-enum-varnames:
         - ACCEPTED
@@ -1622,6 +1640,7 @@ components:
         - RESUBSCRIBE
         - SUMMARY
         - UPGRADE
+        - UNREPORTED
         - VOLUNTARY
     Summary:
       type: object
