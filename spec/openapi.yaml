@@ -1,7 +1,7 @@
 openapi: 3.0.3
 info:
   title: App Store Server API
-  version: 1.10.0
+  version: 1.11.0
 servers:
   - url: https://api.storekit-sandbox.itunes.apple.com/
     description: Sandbox
@@ -690,6 +690,8 @@ components:
           $ref: '#/components/schemas/Platform'
         playTime:
           $ref: '#/components/schemas/PlayTime'
+        refundPreference:
+          $ref: '#/components/schemas/RefundPreference'
         sampleContentProvided:
           type: boolean
         userStatus:
@@ -1442,6 +1444,19 @@ components:
           type: array
           items:
             type: string
+    RefundPreference:
+      type: integer
+      format: int32
+      enum:
+        - 0
+        - 1
+        - 2
+        - 3
+      x-enum-varnames:
+        - UNDECLARED
+        - GRANT
+        - DECLINE
+        - NONE
     ResponseBodyV1:
       deprecated: true
       type: object
