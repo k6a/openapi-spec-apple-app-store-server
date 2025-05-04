@@ -1,7 +1,7 @@
 openapi: 3.0.3
 info:
   title: App Store Server API
-  version: 1.11.0
+  version: 1.12.0
 servers:
   - url: https://api.storekit-sandbox.itunes.apple.com/
     description: Sandbox
@@ -12,6 +12,7 @@ tags:
 paths:
   /inApps/v1/history/{transactionId}:
     get:
+      deprecated: true
       operationId: GetTransactionHistory
       tags:
         - InApps
@@ -65,6 +66,104 @@ paths:
           in: query
           schema:
             type: boolean
+        - name: excludeRevoked
+          in: query
+          schema:
+            type: boolean
+          deprecated: true
+      responses:
+        '200':
+          description: _
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HistoryResponse'
+        '400':
+          description: _
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorPayload'
+        '401':
+          description: _
+        '404':
+          description: _
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorPayload'
+        '429':
+          description: _
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorPayload'
+        '500':
+          description: _
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorPayload'
+  /inApps/v2/history/{transactionId}:
+    get:
+      operationId: GetTransactionHistoryV2
+      tags:
+        - InApps
+      parameters:
+        - name: transactionId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: revision
+          in: query
+          schema:
+            type: string
+        - name: startDate
+          in: query
+          schema:
+            type: integer
+            format: int64
+        - name: endDate
+          in: query
+          schema:
+            type: integer
+            format: int64
+        - name: productId
+          in: query
+          schema:
+            type: array
+            items:
+              type: string
+        - name: productType
+          in: query
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/TypeProduct'
+        - name: inAppOwnershipType
+          in: query
+          schema:
+            $ref: '#/components/schemas/InAppOwnershipType'
+        - name: sort
+          in: query
+          schema:
+            type: string
+        - name: revoked
+          in: query
+          schema:
+            type: boolean
+        - name: subscriptionGroupIdentifier
+          in: query
+          schema:
+            type: array
+            items:
+              type: string
+        - name: excludeRevoked
+          in: query
+          schema:
+            type: boolean
+          deprecated: true
       responses:
         '200':
           description: _
@@ -935,6 +1034,13 @@ components:
         renewalDate:
           type: integer
           format: int64
+        renewalPrice:
+          type: integer
+          format: int64
+        currency:
+          type: string
+        offerDiscountType:
+          $ref: '#/components/schemas/OfferDiscountType'
     JwsTransactionDecodedPayload:
       type: object
       properties:
@@ -1263,6 +1369,7 @@ components:
         - REVOKE
         - SUBSCRIBED
         - TEST
+        - ONE_TIME_CHARGE
       x-enum-varnames:
         - CONSUMPTION_REQUEST
         - DID_CHANGE_RENEWAL_PREF
@@ -1282,6 +1389,7 @@ components:
         - REVOKE
         - SUBSCRIBED
         - TEST
+        - ONE_TIME_CHARGE
     OfferDiscountType:
       type: string
       enum:
