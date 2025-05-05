@@ -1,7 +1,7 @@
 openapi: 3.0.3
 info:
   title: App Store Server API
-  version: 1.13.0
+  version: 1.15.0
 servers:
   - url: https://api.storekit-sandbox.itunes.apple.com/
     description: Sandbox
@@ -749,6 +749,10 @@ components:
         preorderDate:
           type: integer
           format: int64
+        appTransactionId:
+          type: string
+        originalPlatform:
+          type: string
     AutoRenewStatus:
       type: integer
       format: int32
@@ -1047,6 +1051,13 @@ components:
           $ref: '#/components/schemas/OfferDiscountType'
         eligibleWinBackOfferIds:
           $ref: '#/components/schemas/EligibleWinBackOfferIds'
+        appTransactionId:
+          type: string
+        offerPeriod:
+          type: string
+        appAccountToken:
+          type: string
+          format: uuid
     JwsTransactionDecodedPayload:
       type: object
       properties:
@@ -1110,6 +1121,10 @@ components:
           type: string
         offerDiscountType:
           $ref: '#/components/schemas/OfferDiscountType'
+        appTransactionId:
+          type: string
+        offerPeriod:
+          type: string
     LastTransactionsItem:
       type: object
       properties:
@@ -1551,6 +1566,18 @@ components:
         - NON_RENEWABLE
         - CONSUMABLE
         - NON_CONSUMABLE
+    PurchasePlatform:
+      type: string
+      enum:
+        - iOS
+        - macOS
+        - tvOS
+        - visionOS
+      x-enum-varnames:
+        - IOS
+        - MAC_OS
+        - TV_OS
+        - VISION_OS
     RefundHistoryResponse:
       type: object
       properties:
