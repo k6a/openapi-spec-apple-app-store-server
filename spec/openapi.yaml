@@ -1,7 +1,7 @@
 openapi: 3.0.3
 info:
   title: App Store Server API
-  version: 1.12.0
+  version: 1.13.0
 servers:
   - url: https://api.storekit-sandbox.itunes.apple.com/
     description: Sandbox
@@ -853,6 +853,10 @@ components:
        - DID_NOT_DELIVER_DUE_TO_SERVER_OUTAGE
        - DID_NOT_DELIVER_DUE_TO_IN_GAME_CURRENCY_CHANGE
        - DID_NOT_DELIVER_FOR_OTHER_REASON
+    EligibleWinBackOfferIds:
+      type: array
+      items:
+        $ref: '#/components/schemas/OfferIdentifier'
     Environment:
       type: string
       enum:
@@ -1041,6 +1045,8 @@ components:
           type: string
         offerDiscountType:
           $ref: '#/components/schemas/OfferDiscountType'
+        eligibleWinBackOfferIds:
+          $ref: '#/components/schemas/EligibleWinBackOfferIds'
     JwsTransactionDecodedPayload:
       type: object
       properties:
@@ -1400,6 +1406,8 @@ components:
         - FREE_TRIAL
         - PAY_AS_YOU_GO
         - PAY_UP_FRONT
+    OfferIdentifier:
+      type: string
     OfferType:
       type: integer
       format: int32
@@ -1407,10 +1415,12 @@ components:
         - 1
         - 2
         - 3
+        - 4
       x-enum-varnames:
         - INTRODUCTORY_OFFER
         - PROMOTIONAL_OFFER
         - SUBSCRIPTION_OFFER_CODE
+        - WIN_BACK_OFFER
     Order:
       type: integer
       format: int32
